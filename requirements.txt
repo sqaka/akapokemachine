@@ -1,3 +1,1 @@
 Flask
-opencv
-tensorflow

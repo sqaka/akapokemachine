@@ -7,7 +7,7 @@ import cv2
 import tensorflow as tf
 import os
 import random
-# import main
+import main
 
 # OpenCVのデフォルトの顔の分類器のpath
 cascade_path = './opencv/opencv/data/haarcascades/haarcascade_frontalface_default.xml'

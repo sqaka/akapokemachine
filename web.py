@@ -16,7 +16,7 @@ app.config['DEBUG'] = True
 UPLOAD_FOLDER = './static/images/default/'
 
 # ルーティング。/にアクセス時
-@app.route('/templates')
+@app.route('./templates')
 def index():
     return render_template('index.html')
 

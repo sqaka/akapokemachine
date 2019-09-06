@@ -42,5 +42,5 @@ if __name__ == '__main__':
     app.debug = True
     # よくわからないがportをネジ込んでもエラーがひとつ消える
     port = int(os.environ.get('PORT', 5000))
-　　 # host='0.0.0.0' はあったほうが良いらしい。port=portはなくてもいい気もする
+　　 # あったほうがよさそう
     app.run(host='0.0.0.0', port=port)

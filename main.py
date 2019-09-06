@@ -8,7 +8,7 @@ import tensorflow as tf
 import tensorflow.python.platform
 import pdb
 
-# 識別ラベルの数(今回はihy:0,izm:1,kzm:2で、計3)
+# 識別ラベルの数(今回はxp:0,noah:1,wow:2で、計3)
 NUM_CLASSES = 3
 # 学習する時の画像のサイズ(px)
 IMAGE_SIZE = 28
@@ -19,22 +19,20 @@ IMAGE_PIXELS = IMAGE_SIZE*IMAGE_SIZE*3
 # パラメタの設定、デフォルト値やヘルプ画面の説明文を登録できるTensorFlow組み込み関数
 flags = tf.app.flags
 FLAGS = flags.FLAGS
-# 学習用データ
+# 学習用データ pathはうまいこと変えてください
 flags.DEFINE_string('train', './tensorflow/data/train/train.txt', 'File name of train data')
-# 検証用テストデータ
+# 検証用テストデータ pathはうまいこと変えてください
 flags.DEFINE_string('test', './tensorflow/data/test/test.txt', 'File name of train data')
-# データを置いてあるフォルダ
+# データを置いてあるフォルダ pathはうまいこと変えてください
 flags.DEFINE_string('train_dir', './tensorflow/data/train/train_data/', 'Directory to put the training data.')
-# データ学習訓練の試行回数
+# データ学習訓練の試行回数 数字を変更するといい感じにグラフの形状が変わる
 flags.DEFINE_integer('max_steps', 30, 'Number of steps to run trainer.')
-# 1回の学習で何枚の画像を使うか
+# 1回の学習で何枚の画像を使うか 数字を変更するといい感じにグラフの形状が変わる
 flags.DEFINE_integer('batch_size', 25, 'Batch size Must divide evenly into the dataset sizes.')
-# 学習率、小さすぎると学習が進まないし、大きすぎても誤差が収束しなかったり発散したりしてダメとか
+# 学習率 変えていいと思いますが一旦不変としています
 flags.DEFINE_float('learning_rate', 1e-4, 'Initial learning rate.')
 
-# AIの学習モデル部分(ニューラルネットワーク)を作成する
-# images_placeholder: 画像のplaceholder, keep_prob: dropout率のplace_holderが引数になり
-# 入力画像に対して、各ラベルの確率を出力して返す
+# AIの学習モデル部分(ニューラルネットワーク)を作成する。 全くわからないのでコピペ
 def inference(images_placeholder, keep_prob):
 
   # 重みを標準偏差0.1の正規分布で初期化する

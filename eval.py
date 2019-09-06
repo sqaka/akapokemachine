@@ -9,37 +9,38 @@ import os
 import random
 import main
 
-# OpenCVのデフォルトの顔の分類器のpath
+# OpenCVで顔認証するためのpath　これをherokuに読み込ませられなかったので直下に裸で置きました
 cascade_path = './haarcascade_frontalface_default.xml'
 faceCascade = cv2.CascadeClassifier(cascade_path)
 
-# 識別ラベルと各ラベル番号に対応する名前
+# 番号がラベル　u以下が検出後に表示させるコメント　これを増やせば検出対象が増やせる
 HUMAN_NAMES = {
   0: u"XP　を　あおっていた　ポケモン",
   1: u"NOAH　を　あおっていた　ポケモン",
   2: u"Wowbit　を　あおっていた　ポケモン",
 }
 
-#指定した画像(img_path)を学習結果(ckpt_path)を用いて判定する
+# 指定した画像(img_path)を学習結果(ckpt_path)を用いて判定する
 def evaluation(img_path, ckpt_path):
-  # GraphのReset(らしいが、何をしているのかよくわかっていない…)
+  # グラフリセット 他のセッションが動いているかどうかが不明ですがとりあえず入れる
   tf.reset_default_graph()
-  # 画像を開く
+  # 画像を開く　この'r'が何なのか不明すぎる
   f = open(img_path, 'r')
   # 画像読み込み
   img = cv2.imread(img_path, cv2.IMREAD_COLOR)
   # モノクロ画像に変換
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+  # OpenCVでは(gray, 1.3, 5)が推奨されていたような気もするのですが、まだ試していません
   face = faceCascade.detectMultiScale(gray, 1.1, 3)
   if len(face) > 0:
     for rect in face:
-      # 加工した画像に何でもいいので適当な名前をつけたかった。日付秒数とかでいいかも
+      # 加工画像に適当な名前をつける
       random_str = str(random.random())
-      # 顔部分を赤線で書こう
+      # 顔部分を赤線で囲む
       cv2.rectangle(img, tuple(rect[0:2]), tuple(rect[0:2]+rect[2:4]), (0, 0, 255), thickness=2)
-      # 顔部分を赤線で囲った画像の保存先
+      # 赤線で囲った画像の保存先
       face_detect_img_path = './static/images/face_detect/' + random_str + '.jpg'
-      # 顔部分を赤線で囲った画像の保存
+      # 赤線で囲った画像の保存
       cv2.imwrite(face_detect_img_path, img)
       x = rect[0]
       y = rect[1]

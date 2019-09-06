@@ -9,18 +9,18 @@ from werkzeug import secure_filename
 import os
 import eval
 
-# 自身の名称を app という名前でインスタンス化する
+# app(文字列はなんでもいい)名義でインスタンス化
 app = Flask(__name__)
 app.config['DEBUG'] = True
 # 投稿画像の保存先
 UPLOAD_FOLDER = './static/images/default/'
 
-# ルーティング。/にアクセス時
+# ルートアクセス時の挙動を設定　なぜか'/'から"/"に変えるとエラーひとつ消える
 @app.route("/")
 def index():
     return render_template('index.html')
 
-# 画像投稿時のアクション
+# 画像投稿時のアクション　ここのpostも文字列なんでもいいみたい
 @app.route('/post', methods=['GET','POST'])
 def post():
   if request.method == 'POST':
@@ -35,10 +35,12 @@ def post():
         result = []
     return render_template('index.html', result=result)
   else:
-    # エラーなどでリダイレクトしたい場合
+    # エラーの際は「エラーです」等の気の利いたお知らせはせず無慈悲にトップに戻す
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.debug = True
+    # よくわからないがportをネジ込んでもエラーがひとつ消える
     port = int(os.environ.get('PORT', 5000))
+　　 # host='0.0.0.0' はあったほうが良いらしい。port=portはなくてもいい気もする
     app.run(host='0.0.0.0', port=port)

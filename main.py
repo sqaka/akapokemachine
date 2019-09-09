@@ -11,7 +11,7 @@ import pdb
 # 識別ラベルの数(今回はxp:0,noah:1,wow:2で、計3)
 NUM_CLASSES = 3
 # 学習する時の画像のサイズ(px)
-IMAGE_SIZE = 28
+IMAGE_SIZE = 56
 # 画像の次元数(28* 28*カラー(?))
 IMAGE_PIXELS = IMAGE_SIZE*IMAGE_SIZE*3
 

@@ -31,7 +31,7 @@ def evaluation(img_path, ckpt_path):
   # モノクロ画像に変換
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
   # OpenCVでは(gray, 1.3, 5)が推奨されていたような気もするのですが、まだ試していません
-  face = faceCascade.detectMultiScale(gray, 1.1, 3)
+  face = faceCascade.detectMultiScale(gray, 1.3, 5)
   if len(face) > 0:
     for rect in face:
       # 加工画像に適当な名前をつける
@@ -62,7 +62,7 @@ def evaluation(img_path, ckpt_path):
   # 画像読み込み
   img = cv2.imread(target_image_path)
   # 28px*28pxにリサイズ
-  img = cv2.resize(img, (28, 28))
+  img = cv2.resize(img, (56, 56))
   # 画像情報を一列にした後、0-1のfloat値にする
   image.append(img.flatten().astype(np.float32)/255.0)
   # numpy形式に変換し、TensorFlowで処理できるようにする

@@ -18,7 +18,7 @@ Keras-Preprocessing==1.1.0
 lxml==4.6.5
 Markdown==3.1.1
 MarkupSafe==1.1.1
-numpy==1.17.0
+numpy==1.21.0
 opencv-python==4.2.0.32
 protobuf==3.15.0
 requests==2.22.0

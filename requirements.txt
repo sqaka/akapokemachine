@@ -31,5 +31,5 @@ termcolor==1.1.0
 urllib3==1.26.5
 uWSGI==2.0.18
 virtualenv==16.7.4
-Werkzeug==0.15.5
+Werkzeug==2.2.3
 wrapt==1.11.2
